@@ -12,15 +12,15 @@
   *          is using in the C source code, usually in main.c. This file contains:
   *           - Configuration section that allows to select:
   *              - The device used in the target application
-  *              - To use or not the peripheral’s drivers in application code(i.e. 
-  *                code will be based on direct access to peripheral’s registers 
+  *              - To use or not the peripheralï¿½s drivers in application code(i.e. 
+  *                code will be based on direct access to peripheralï¿½s registers 
   *                rather than drivers API), this option is controlled by 
   *                "#define USE_STDPERIPH_DRIVER"
   *              - To change few application-specific parameters such as the HSE 
   *                crystal frequency
   *           - Data structures and the address mapping for all peripherals
   *           - Peripheral's registers declarations and bits definition
-  *           - Macros to access peripheral’s registers hardware
+  *           - Macros to access peripheralï¿½s registers hardware
   *  
   ******************************************************************************
   * @attention
@@ -54,14 +54,6 @@
 /** @addtogroup Library_configuration_section
   * @{
   */
-  
-/* Uncomment the line below according to the target STM32 device used in your
-   application 
-  */
-
-#if !defined (STM32F2XX) 
-  #define STM32F2XX
-#endif
 
 /*  Tip: To avoid modifying this file each time you need to switch between these
         devices, you can define the device in your toolchain compiler preprocessor.
@@ -71,13 +63,17 @@
  #error "Please select first the target STM32F2XX device used in your application (in stm32f2xx.h file)"
 #endif
 
+#define	__FPU_PRESENT	0
+#define	__FPU_USED		0
+	 
 #if !defined  (USE_STDPERIPH_DRIVER)
 /**
  * @brief Comment the line below if you will not use the peripherals drivers.
    In this case, these drivers will not be included and the application code will 
    be based on direct access to peripherals registers 
    */
-  /*#define USE_STDPERIPH_DRIVER*/
+  //#define USE_STDPERIPH_DRIVER
+  #define assert_param(expr) ((void)0)
 #endif /* USE_STDPERIPH_DRIVER */
 
 /**
@@ -4931,7 +4927,7 @@ typedef struct
 #define  RCC_APB2RSTR_USART6RST              ((uint32_t)0x00000020)
 #define  RCC_APB2RSTR_ADCRST                 ((uint32_t)0x00000100)
 #define  RCC_APB2RSTR_SDIORST                ((uint32_t)0x00000800)
-#define  RCC_APB2RSTR_SPI1                   ((uint32_t)0x00001000)
+#define  RCC_APB2RSTR_SPI1RST                ((uint32_t)0x00001000)
 #define  RCC_APB2RSTR_SYSCFGRST              ((uint32_t)0x00004000)
 #define  RCC_APB2RSTR_TIM9RST                ((uint32_t)0x00010000)
 #define  RCC_APB2RSTR_TIM10RST               ((uint32_t)0x00020000)
